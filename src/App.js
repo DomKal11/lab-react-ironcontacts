@@ -31,8 +31,10 @@ function App() {
   }
 
   
-  function deleteContact(id) {
-   
+  function deleteContact(index) {
+    const deletedContact = [...getContacts];
+    deletedContact.splice(index, 1);
+    setGetContacts(deletedContact);
   }
 
 
@@ -56,7 +58,7 @@ function App() {
         </tr>
         </thead>
         <tbody>
-        {getContacts.map((contact) => {
+        {getContacts.map((contact, i) => {
           return (
             <tr key={contact.id}>
               <td>
@@ -79,7 +81,7 @@ function App() {
               {contact.wonEmmy && <p>🏆</p>}
               </td>
               <td>
-              <button onClick={() => deleteContact(contact.id)}> Delete </button>
+              <button onClick={() => deleteContact(i)}> Delete </button>
               </td>
               
             </tr>
